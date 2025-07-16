@@ -1,3 +1,5 @@
-dont_commit.txt
-do_not_commit/credentials.json
-do_not_commit/local_memo.txt
+credentials.json
+.env
+.venv
+.idea
+__pycache__

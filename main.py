@@ -157,16 +157,17 @@ async def process_clip(interaction: discord.Interaction, message: discord.Messag
 
     # 4. 結果をチャンネルに投稿
     embed = discord.Embed(
-        description=f"**要約**\n{summary}",
+        # descriptionに要約とリンクを両方含める
+        description=f"**要約**「{summary}」\n[元の投稿はこちら]({message.jump_url})",
         color=discord.Color.blue()
     )
-    embed.add_field(name="元の投稿", value=f"[こちらをクリック]({message.jump_url})", inline=False)
+    # embed.add_field(...) の行を削除！
     embed.set_author(name=f"Clipped by {user.display_name}", icon_url=user.avatar.url if user.avatar else user.default_avatar.url)
     embed.set_footer(text=f"from #{message.channel.name}")
     embed.timestamp = message.created_at
 
     await post_channel.send(embed=embed)
-    
+
     # 5. 処理済みとしてマーク
     await firestore_manager.mark_message_as_processed(message.id, guild.id, message.jump_url)
 

@@ -3,7 +3,7 @@ import os
 import google.generativeai as genai
 
 async def summarize_text(text: str) -> str:
-    """与えられたテキストを2行程度に要約する"""
+    """与えられたテキストを数行に要約する"""
     if not text:
         return "（要約対象のテキストがありません）"
 
@@ -13,7 +13,6 @@ async def summarize_text(text: str) -> str:
         return "（エラー: APIキーが設定されていません）"
 
     try:
-        # --- ここからが変更点 ---
         # APIを呼び出す直前に設定とモデルの初期化を行う
         genai.configure(api_key=api_key)
 
@@ -32,10 +31,9 @@ async def summarize_text(text: str) -> str:
                 {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_MEDIUM_AND_ABOVE"},
             ]
         )
-        # --- ここまでが変更点 ---
 
         prompt_parts = [
-            f"以下のDiscordの投稿を、投稿者の意図を汲み取りつつ、2行程度の日本語で簡潔に要約してください。\n\n---\n{text}\n---\n\n要約:",
+            f"以下のDiscordの投稿を、投稿者の意図を汲み取りつつ、3行程度の日本語で簡潔に要約してください。\n\n---\n{text}\n---\n\n要約:",
         ]
 
         response = await model.generate_content_async(prompt_parts)

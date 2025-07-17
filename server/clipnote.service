@@ -1,0 +1,13 @@
+[Unit]
+Description=Discord Bot - clipnote
+After=network.target
+
+[Service]
+Type=simple
+User=saito_nobuhiro
+WorkingDirectory=/home/saito_nobuhiro/discord-clipnote
+ExecStart=/home/saito_nobuhiro/discord-clipnote/.venv/bin/python main.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

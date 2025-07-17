@@ -30,3 +30,6 @@ https://bookmarker.framer.website/
 bot招待URL
     https://discord.com/oauth2/authorize?client_id=1394912503414132788&permissions=84992&integration_type=0&scope=bot+applications.commands
 
+
+VMに入って仮想環境に入るコマンド
+$ source .venv/bin/activate

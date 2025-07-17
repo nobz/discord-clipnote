@@ -161,8 +161,7 @@ async def process_clip(interaction: discord.Interaction, message: discord.Messag
         description=f"**要約**「{summary}」\n[元の投稿はこちら]({message.jump_url})",
         color=discord.Color.blue()
     )
-    # embed.add_field(...) の行を削除！
-    embed.set_author(name=f"Clipped by {user.display_name}", icon_url=user.avatar.url if user.avatar else user.default_avatar.url)
+    embed.set_author(name=f"Originally posted by {message.author.display_name}", icon_url=message.author.avatar.url if message.author.avatar else message.author.default_avatar.url)
     embed.set_footer(text=f"from #{message.channel.name}")
     embed.timestamp = message.created_at
 

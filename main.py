@@ -162,7 +162,10 @@ async def process_clip(interaction: discord.Interaction, message: discord.Messag
         color=discord.Color.blue()
     )
     embed.set_author(name=f"Originally posted by {message.author.display_name}", icon_url=message.author.avatar.url if message.author.avatar else message.author.default_avatar.url)
-    embed.set_footer(text=f"from #{message.channel.name}")
+    embed.set_footer(
+        text=f"Clipped by {user.display_name} • from #{message.channel.name}",
+        icon_url=user.avatar.url if user.avatar else user.default_avatar.url
+    )
     embed.timestamp = message.created_at
 
     await post_channel.send(embed=embed)
